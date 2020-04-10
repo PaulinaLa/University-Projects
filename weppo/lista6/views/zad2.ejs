@@ -1,0 +1,22 @@
+  
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Main</title>
+</head>
+<body>
+  <p><%= value1 %></p>
+  <%- include('zad22', {
+    options: [
+      {label: 'opcja1', value: 'value1'},
+      {label: 'opcja2', value: 'value2'},
+      {label: 'opcja3', value: 'value3'},
+      {label: 'opcja4', value: 'value4'},
+      {label: 'opcja5', value: 'value5'}
+    ]
+  }) %>
+</body>
+</html>

@@ -1,0 +1,1 @@
+INSERT INTO osoba_new (id, imie, nazwisko, plec) VALUES ( NEXTVAL('sequence1') , 'S³oñ', 'Simba', 'M')

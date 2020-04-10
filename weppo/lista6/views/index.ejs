@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <form action="/" method="POST" enctype="multipart/form-data">
+    <label for="file">Plik: </label>
+    <input type="file" accept="*" name="file" id="file"/>
+    <button>Wczytaj</button>
+  </form>
+
+  <% for (const filename of nazwy) { %>
+    <div>
+      <img src="/<%= filename %>" alt="<%= filename %>">
+    </div>
+  <% } %>
+</body>
+</html>

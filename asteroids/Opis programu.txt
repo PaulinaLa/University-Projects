@@ -1,0 +1,148 @@
+
+
+		Paulina Landkocz i Micha³ Symoszyn
+
+			Gra Asteroids
+
+
+1. Wstêp.
+
+
+Projekt jest nasz¹ interpretacj¹ popularnej gry Asteroids typu "arcade" 
+z lat 70. XX wieku. Powsta³ na podstawie ksi¹¿ki Michaela Dawsona 
+"Python dla ka¿dego. Podstawy programowania. Wydanie III" (1) i zosta³
+napisany w Pythonie z wykorzystaniem biblioteki Pygame (2).
+
+Na program sk³ada siê siedem klas i kilka pomocniczych funkcji zdefi-
+niowanych na pocz¹tku, s³u¿¹cych do skrócenia d³ugich poleceñ pygame,
+pozwalaj¹cych na czytanie plików z zewn¹trz i wyœwietlanie ich na ek-
+ranie.
+
+
+2. Wykaz klas obecnych w programie.
+
+
+Pierwsz¹ klas¹ do zaprezentowania jest klasa Obiekt_Gry, w której znaj-
+duj¹ siê podstawowe metody, pozwalaj¹ce na póŸniejsz¹ animacjê 
+i umiejscowienie obiektu w przestrzeni gry. Funkcje takie jak "narysuj",
+"rozmiar", "promieñ" charakteryzuj¹ ka¿d¹ z póŸniej zdefiniowanych klas,
+to znaczy, zarówno Statek jak i Pocisk maj¹ swój unikalny wygl¹d oraz 
+obliczany w odpowiedni sposób na podstawie rozmiaru i promienia tor 
+ruchu.
+
+
+Kolejn¹ czêœci¹ programu jest klasa Plansza, s³u¿y ona do czytania t³a
+podczas ca³ej rozgrywki. Bez tej klasy nie mo¿liwa by³aby dynamiczna 
+zmiana wygl¹du gry na przestrzeni rozgrywki, w zale¿noœci od aktualnego
+stanu. Koniec gry ma przypisane inne t³o ni¿ standardowa rozgrywka.
+
+
+Klasa tekst jest prostym fragmentem kodu, który umo¿liwia obs³ugê wszel-
+kiego rodzaju napisów, ich rozmiarów i kolorów, które u¿ytkownik mo¿e 
+zobaczyæ na ekranie podczas rozgrywki.
+
+
+Jedn¹ z najwa¿niejszych klas w grze jest klasa Statek. Znajduj¹ siê 
+tutaj metody, które imituj¹ dynamikê animacji statku, czytaj¹c inny
+obraz w zale¿noœci od stanu obiektu. Powy¿sza animacja mo¿liwa jest 
+dziêki zastosowaniu metody "narysuj". 
+Ponadto, klasê tê charakteryzuj¹ funkcje takie jak "ruch", gdzie nastê-
+puj¹ matematyczne obliczenia po³o¿enia w przestrzeni i kierunku w jaki
+obrócony jest dziób statku, oraz "strzelanie", dziêki której korzysta-
+j¹c z klasy Pocisk generujemy nowe strza³y i przechowujemy je w liœcie, 
+która ogranicza pociski obecne na planszy w jednym czasie, aby nie by³o
+ich zbyt du¿o.
+
+
+Klasê Pocisk od klasy Statek ró¿ni to, ¿e jest ona pozbawiona metody 
+"strzelanie" oraz czytane s¹ inne obrazy do wyœwietlenia na planszy.
+K¹t wystrza³u jest taki jak po³o¿enie statku w chwili strza³u.
+
+
+Klas¹, która umo¿liwia generowanie asteroid, bêd¹cych przeszkodami 
+w grze, jest klasa Asteroida. Asteroidy posiadaj¹ trzy mo¿liwe wiel-
+koœci, które definiuj¹ ich rozmiar. Mog¹ byæ ma³e, du¿e albo œrednie.
+Ruch generowany jest losowo. Losujemy wspó³rzêdne kierunku i na ich
+podstawie okreœlamy pozycjê na jakiej pojawi siê przeszkoda. Dbamy
+równie¿ o to, by przeszkoda nie pojawi³a siê w przestrzeni statku,
+gdy¿ to pozbawi³oby gracza jednej z trzech dostêpnych szans na zdo-
+bycie punktów w rozgrywce.
+
+
+G³ówn¹ klas¹, która nadzoruje ca³¹ rozgrywkê, jest klasa Gra. 
+Na pocz¹tku definiowane s¹ ró¿ne stany gry, w zale¿noœci od których
+bêd¹ wyœwietlane na ekranie odmienne obrazy i wykonywane ró¿ne akcje.
+W konstruktorze czytamy okno ekranu gry i jego rozdzielczoœæ.
+Wczytujemy dŸwiêki i wyœwietlane póŸniej napisy. Okreœlamy,
+w jakim zasiêgu nasze asteroidy bêd¹ w stanie uszkodziæ statek, 
+czyli wyznaczamy bezpieczne pole dla gracza. 
+
+PóŸniej definiujemy ekran powitania i wyœwietlane na nim informacje.
+Nastêpnie metoda "rozpocznij" okreœla minimalny dystans od statku,
+w jakim mog¹ siê pojawiaæ asteroidy oraz rozpoczyna ich tworzenie,
+Do zadañ tej¿e metody nale¿y równie¿ ustawienie "liczników ¿ycia",
+wyniku i czasu. 
+
+Dalej znajduj¹ siê metody do tworzenia asteroid w losowych pozycjach
+oraz takie, które umo¿liwiaj¹ uruchomienie gry.
+"Start" umieszcza statek w centralnej czêœci ekranu i uruchamia 
+œcie¿kê dŸwiêkow¹ (3). 
+PóŸniej metoda "uruchom" przypisuje odpowiednim klawiszom strza³ek
+kierunki poruszania statkiem, a spacji strzelanie. Ponadto okreœla,
+¿e gdy "licznik ¿yæ" osi¹gnie cyfrê zera, uruchamia siê funkcja 
+"koniec_gry". 
+
+"Koniec_gry" i "umieranie" s³u¿¹ do czytania odpowiedniego motywu
+muzycznego, pasuj¹cego do sytuacji i zmieniaj¹ stan gry.
+ 
+Dalej zdefiniowana jest fizyka statku, pocisków i asteroid. 
+Na fizykê statku ma wp³yw wy³¹cznie jego ruch, natomiast pociski 
+s¹ bardziej skomplikowane. Gdy napotkaj¹ du¿¹ asteroidê, "rozbijaj¹"
+j¹ na dwie œrednie, gry œredni¹ to na dwie ma³e, a gdy ma³¹ to wtedy
+asteroida znika, czyli wyrzucamy j¹ z listy aktywnych na planszy 
+asteroid. Za ka¿d¹ zniszczon¹ asteroidê doliczamy do wyniku odpo-
+wiedni¹ iloœæ punktów.
+ 
+W fizyce asteroid kluczowe jest to, ¿e gdy statek uderzy w asteroidê,
+dochodzi do wypadku i dalsza rozgrywka jest niemo¿liwia. 
+Metoda "wyœwietl" rysuje na ekranie wszystkie obiekty gry (3), 
+w zale¿noœci od jej aktualnego stanu.
+
+
+3. Przeznaczenie programu
+
+
+Opisywany program zosta³ napisany z motywacj¹ udostêpnienia go
+rodzeñstwu, w celu rozszerzenia wiedzy m³odszych braci na temat
+historii gier oraz w celu realizacji zadania na pracowniê pro-
+gramowania obiektowego. Wy¿ej wymienione klasy zosta³y przygo-
+towane w sposób, w jaki autorzy wyobra¿ali sobie kosmiczn¹ bitwê.
+Napisany kod obrazuje postêpy, jakie poczynili twórcy podczas 
+dwóch tygodni pracy.
+
+Potencjalne wykorzystanie napisanych klas i obiektów przez progra-
+mistów jest trudne do os¹dzenia. Niniejsza gra mo¿e byæ wykorzysta-
+na zarówno jako rozrywka, ale równie¿ przyk³ad programu napisanego
+w jêzyku Python, obrazuj¹cy sposób programowania obiektowego w tym¿e
+jêzyku. Do³¹czony kod móg³by równie¿ pos³u¿yæ za inspiracjê do napi-
+sania innych treœci zwi¹zanych z kosmosem oraz rakietami kosmicznymi.
+
+
+4. Podzia³ obowi¹zków podczas realizacji projektu.
+
+
+Klasy Obiekt_Gry, Plansza i Tekst s¹ autorstwa Micha³a Symoszyn,
+natomiast Statek, Pocisk i Asteroida Pauliny Landkocz.
+Nad klas¹ Gra pracowaliœmy razem.
+Dokumentacja równie¿ zosta³a przygotowana wspólnie. 
+
+
+5. Odwo³ania.
+
+
+1) "Python dla ka¿dego. Podstawy programowania. Wydanie III", 
+   ISBN 9788324693580, Michael Dawson
+2) https://www.pygame.org/news - tutaj odnaleŸæ mo¿na dokumentacjê
+   podanej biblioteki.
+3) DŸwiêki: http://www.classicgaming.cc/classics/asteroids/sounds. 
+   Obrazy zosta³y znalezione w google grafika.
